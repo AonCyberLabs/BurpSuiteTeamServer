@@ -1,12 +1,14 @@
 # BurpSuite-Team-Server
 
-This repository holds the code for the server side of the Burpsuite Team Collaborator tool found here https://github.com/GDSSecurity/BurpSuite-Team-Extension. It is loosely built upon the chat server at ***MaChat by minaandrawos (https://github.com/minaandrawos/machat)***.
+This repository holds the code for the server side of the Burpsuite Team Collaborator tool found here https://github.com/AonCyberLabs/BurpSuite-Team-Extension.
 
 # Features
 
   + Multiple room support
   
-  + AES encryption between server and client with server generated AES key
+  + Support for rooms with passwords
+  
+  + Mutual TLS encryption between server and client with server generated certificate and key
   
   + Seperate room scopes
   
@@ -15,14 +17,18 @@ This repository holds the code for the server side of the Burpsuite Team Collabo
 # How to start the Server
 
 ```
-git clone https://github.com/GDSSecurity/BurpSuiteTeamServer.git
-cd BurpSuiteTeamServer/cmd/BurpSuiteTeamServer
-go build
-./BurpSuiteTeamServer
+go get github.com/AonCyberLabs/BurpSuiteTeamServer/cmd/BurpSuiteTeamServer
+cd ~/go/src/github.com/AonCyberLabs/BurpSuiteTeamServer/
+go get ./...
+go install ./...
+~/go/bin/BurpSuiteTeamServer -h
 ```
 Output:
 ```
-This is the server key that clients need to login: <Server key>
-Starting chat room server
-Awaiting Clients...
-  
+Usage of BurpSuiteTeamServer:
+  -host string
+    	host for TLS cert. Defaults to localhost (default "localhost")
+  -port string
+    	http service address (default "9999")
+  -serverPassword string
+    	password for the server
